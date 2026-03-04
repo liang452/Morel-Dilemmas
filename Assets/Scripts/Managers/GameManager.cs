@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
     public InventoryManager inventoryManager;
     public CustomerManager customerManager;
     public StarManager starManager;
+    public CurrencyManager currencyManager;
 
     private void Awake()
     {
