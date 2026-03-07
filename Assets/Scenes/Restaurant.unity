@@ -3354,7 +3354,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -543, y: -365}
+  m_AnchoredPosition: {x: -615, y: -324}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1193486497
@@ -3375,7 +3375,7 @@ MonoBehaviour:
     m_Top: 0
     m_Bottom: 0
   m_ChildAlignment: 0
-  m_Spacing: 15
+  m_Spacing: 10
   m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 1
   m_ChildControlWidth: 0
@@ -4435,6 +4435,7 @@ MonoBehaviour:
   turnSpeed: 6
   isMoving: 0
   spriteRenderer: {fileID: 1357715937}
+  dir: {x: 0, y: 0, z: 0}
   currDirection: {x: 0, y: 0, z: 0}
   layerMask:
     serializedVersion: 2
