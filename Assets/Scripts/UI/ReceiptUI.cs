@@ -36,4 +36,9 @@ public class ReceiptUI : MonoBehaviour
         receipt.GetComponent<Receipt>().LoadReceipt(foodItem, table);
         receipts.Add(receipt);
     }
+
+    public void OnDestroy()
+    {
+        GameManager.Instance.orderManager.OnOrdersChanged -= LoadReceipts;
+    }
 }

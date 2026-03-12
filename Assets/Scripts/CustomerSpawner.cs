@@ -3,14 +3,17 @@ using System.Collections.Generic;
 
 public class CustomerSpawner : MonoBehaviour
 {
-    private List<GameObject> possibleCustomers = new List<GameObject>();
+    // private List<GameObject> possibleCustomers = new List<GameObject>();
     public GameObject[] tables = new GameObject[5]; // also hardcoded as 5 atm 
     public GameObject[] spawnedCustomers = new GameObject[5]; //hardcoded as 5 atm
     public float timeInBetween;  // in second
     public float time;
+    public GameObject finishDayPanel;
 
     public void Start()
     {
+        finishDayPanel.SetActive(false);
+        GameManager.Instance.customerManager.NewDay();
         LoadData();
     }
     
@@ -27,6 +30,10 @@ public class CustomerSpawner : MonoBehaviour
     //randomized, updates gameobject and customerManager
     public void SpawnCustomer()
     {
+        if (GameManager.Instance.customerManager.IsMaxDayCustomer())
+        {
+            return;
+        }
         List<int> openTables = GameManager.Instance.customerManager.GetFreeTables();
         if (openTables.Count == 0)
         {
@@ -35,8 +42,6 @@ public class CustomerSpawner : MonoBehaviour
         int tableIndex = Random.Range(0, openTables.Count);
         List<GameObject> possibleCustomers = GameManager.Instance.customerManager.GetPossibleCustomers();
         int customerIndex = Random.Range(0, possibleCustomers.Count);
-        Debug.Log(customerIndex);
-        Debug.Log(possibleCustomers.Count);
 
         SpawnCustomer(possibleCustomers[customerIndex].GetComponent<Customer>().GetCustomerType(), openTables[tableIndex], false);
     }
@@ -44,17 +49,12 @@ public class CustomerSpawner : MonoBehaviour
     //used for loadData
     public void SpawnCustomer(CustomerType customerType, int tableNum, bool takenOrder)
     {
+        GameManager.Instance.customerManager.IncrementDayCustomer();
         GameObject toSpawnCustomer = GameManager.Instance.customerManager.GetGameObjectFromCustomerType(customerType);
         GameObject spawnedCustomer = Instantiate(toSpawnCustomer, tables[tableNum].transform.position + new Vector3(0, 1f, 0), Quaternion.identity);
         spawnedCustomer.GetComponent<Customer>().SetTableNum(tableNum);
         spawnedCustomers[tableNum] = spawnedCustomer;
         GameManager.Instance.customerManager.AddCustomer(customerType, tableNum, takenOrder);
-    }
-
-    public void DespawnCustomer(int tableNum)
-    {
-        Destroy(spawnedCustomers[tableNum]);
-        spawnedCustomers[tableNum] = null;
     }
 
     public void LoadData()

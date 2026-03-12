@@ -16,7 +16,7 @@ public class MushroomSpawningManager : MonoBehaviour
     // currently just flat memorized 
     private void LoadMushrooms()
     {
-        int numMushrooms = 10;
+        int numMushrooms = GameManager.Instance.dayManager.GetDay() * 10;   //TODO: replace with real algorithm lol
         for (int i = 0; i < numMushrooms; i++)
         {
             int index = (int) (Random.value * collectibleMushrooms.Count);

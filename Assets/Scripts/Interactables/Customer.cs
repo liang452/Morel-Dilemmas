@@ -20,6 +20,7 @@ public class Customer : MonoBehaviour, IInteractable
         {
             if (GameManager.Instance.orderManager.OrderDelivery(tableNum))
             {
+                GameManager.Instance.customerManager.OnDespawnCustomer();
                 Destroy(this.gameObject);
             }
             else
@@ -37,15 +38,15 @@ public class Customer : MonoBehaviour, IInteractable
                 TODO: Replace following conditions with outcome (fail/success) of order and
                 quality of mushrooms used in a dish
             */
-            if (Random.Range(0f, 1f) < 0.5f)
-            {
-                Debug.Log("Success condition");
-                GameManager.Instance.currencyManager.AddCurrency(1);
-            } else
-            {
-                Debug.Log("Recipe Fail Condition");
-                GameManager.Instance.currencyManager.DecreaseCurrency(1);
-            }
+            // if (Random.Range(0f, 1f) < 0.5f)
+            // {
+            //     Debug.Log("Success condition");
+            //     GameManager.Instance.currencyManager.AddCurrency(1);
+            // } else
+            // {
+            //     Debug.Log("Recipe Fail Condition");
+            //     GameManager.Instance.currencyManager.DecreaseCurrency(1);
+            // }
         }
     }
 
