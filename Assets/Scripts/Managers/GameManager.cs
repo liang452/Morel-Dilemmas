@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     public ReviewManager reviewManager;
     public StarManager starManager;
     public CurrencyManager currencyManager;
+    public DayManager dayManager;
 
     private void Awake()
     {
